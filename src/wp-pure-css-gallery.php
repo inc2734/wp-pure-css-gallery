@@ -88,9 +88,9 @@ class Inc2734_WP_Pure_CSS_Gallery {
 	 * @param array $mce_init
 	 */
 	public function _tiny_mce_before_init( $mce_init ) {
-		$styles  = '.wpview .gallery { margin: 0; display: block; border: 2px solid #666; text-align: center; height: 80px; }';
-		$styles .= '.wpview .gallery > * { display: none; }';
-		$styles .= '.wpview .gallery::before { margin-top: 20px; display: inline-block; content: \'\\\\f161\'; font-family: dashicons; font-size: 18px; color: #666 }';
+		$styles  = '#tinymce .wpview .gallery { margin: 0; display: block; border: 2px solid #666; text-align: center; height: 80px; }';
+		$styles .= '#tinymce .wpview .gallery > * { display: none; }';
+		$styles .= '#tinymce .wpview .gallery::before { margin-top: 20px; display: inline-block; content: \'\\\\f161\'; font-family: dashicons; font-size: 18px; color: #666 }';
 		if ( isset( $mce_init['content_style'] ) ) {
 			$mce_init['content_style'] .= $styles;
 		} else {
