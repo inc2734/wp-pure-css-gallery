@@ -13,11 +13,11 @@ $ composer require inc2734/wp-pure-css-gallery
 ```
 <?php
 // When Using composer auto loader
-// new Inc2734\WP_Pure_CSS_Gallery\Pure_CSS_Gallery();
+new Inc2734\WP_Pure_CSS_Gallery\Pure_CSS_Gallery();
 
 // When not Using composer auto loader
-include_once( get_theme_file_path( '/vendor/inc2734/wp-pure-css-gallery/src/wp-pure-css-gallery.php' ) );
-new Inc2734_WP_Pure_CSS_Gallery();
+// include_once( get_theme_file_path( '/vendor/inc2734/wp-pure-css-gallery/src/wp-pure-css-gallery.php' ) );
+// new Inc2734_WP_Pure_CSS_Gallery();
 ```
 
 ```

@@ -5,6 +5,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Pure CSS lightbox effect for the WordPress gallery component
+ */
 class Inc2734_WP_Pure_CSS_Gallery {
 
 	public function __construct() {
@@ -44,7 +47,7 @@ class Inc2734_WP_Pure_CSS_Gallery {
 			'include' => '',
 		], $attr );
 
-		$id = intval( $atts['id'] );
+		$pot_id = intval( $atts['id'] );
 
 		if ( ! empty( $atts['include'] ) ) {
 			$attachments = get_posts( array(
@@ -57,7 +60,7 @@ class Inc2734_WP_Pure_CSS_Gallery {
 			) );
 		} else {
 			$attachments = get_children( array(
-				'post_parent'    => $id,
+				'post_parent'    => $pot_id,
 				'post_status'    => 'inherit',
 				'post_type'      => 'attachment',
 				'post_mime_type' => 'image',
@@ -112,7 +115,10 @@ class Inc2734_WP_Pure_CSS_Gallery {
 			return;
 		}
 
+		// @todo Using getter method
+		// @codingStandardsIgnoreStart
 		extract( $attributes );
+		// @codingStandardsIgnoreEnd
 		ob_start();
 		include( $path );
 		return ob_get_clean();
