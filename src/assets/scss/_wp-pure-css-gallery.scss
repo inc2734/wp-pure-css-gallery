@@ -1,12 +1,12 @@
-.wp-pure-css-gallery {
-  $root: &;
+.wp-pure-css-gallery-lightbox {
+  visibility: hidden;
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  &:target {
+    visibility: visible;
+  }
 
-  &__overlay,
-  &__overlay-inner {
+  &,
+  &__image-wrapper {
     position: fixed;
     left: 0;
     top: 0;
@@ -16,15 +16,7 @@
     background-color: #000;
   }
 
-  &__overlay {
-    visibility: hidden;
-
-    &:target {
-      visibility: visible;
-    }
-  }
-
-  &__overlay-inner {
+  &__image-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,20 +79,26 @@
     right: 0;
     transform: translateY(-50%);
   }
+}
+
+.wp-pure-css-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   @for $i from 1 through 9 {
     &--#{$i}-columns {
-      #{$root}__item {
+      .wp-pure-css-gallery__item {
         width: calc(100% / #{$i});
       }
     }
   }
 
-  &__item {
+  .wp-pure-css-gallery__item {
     flex: none;
   }
 
-  #{$root}__thumbnail {
+  .wp-pure-css-gallery__thumbnail {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
