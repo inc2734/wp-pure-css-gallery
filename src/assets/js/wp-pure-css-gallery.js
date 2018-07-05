@@ -29,7 +29,7 @@ export default class Inc2734_WP_Pure_CSS_Gallery {
         return true;
       }
 
-      const id = 'wp-pre-css-gallery-lightbox-id-' + i;
+      const id = 'wp-pure-css-gallery-lightbox-id-' + i;
       anchor.attr('href', `#${id}`);
 
       const overlay = $(`<div class="wp-pure-css-gallery-lightbox" id="${id}" />`)
