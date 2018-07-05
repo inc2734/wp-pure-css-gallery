@@ -16,36 +16,38 @@ export default class Inc2734_WP_Pure_CSS_Gallery {
       const anchor = image.parent();
       const href   = anchor.attr('href');
 
-      if (! href.match(image.attr('src').replace('/^([^\.]+)\.+?$/'))) {
-        return true;
-      }
-
       const remoteImg = new Image();
-      remoteImg.src = href;
-      const remoteImgWidth  = remoteImg.width;
-      const remoteImgHeight = remoteImg.height;
+      let remoteImgWidth = 0;
+      let remoteImgHeight = 0;
 
-      if (! remoteImgWidth || ! remoteImgHeight) {
-        return true;
+      remoteImg.onload = () => {
+        remoteImgWidth  = remoteImg.width;
+        remoteImgHeight = remoteImg.height;
+
+        if (! remoteImgWidth || ! remoteImgHeight) {
+          return true;
+        }
+
+        const id = 'wp-pure-css-gallery-lightbox-id-' + i;
+        anchor.attr('href', `#${id}`);
+
+        const overlay = $(`<div class="wp-pure-css-gallery-lightbox" id="${id}" />`)
+          .append(
+            $('<a class="wp-pure-css-gallery-lightbox__close-btn" href="#_">&times</a>')
+          ).append(
+            $('<a class="wp-pure-css-gallery-lightbox__image-wrapper" href="#_" />').append(
+              $('<div class="wp-pure-css-gallery-lightbox__image" />').css({
+                backgroundImage: `url(${href})`,
+                height: remoteImgHeight,
+                width: remoteImgWidth
+              })
+            )
+          );
+
+        anchor.after(overlay);
       }
 
-      const id = 'wp-pure-css-gallery-lightbox-id-' + i;
-      anchor.attr('href', `#${id}`);
-
-      const overlay = $(`<div class="wp-pure-css-gallery-lightbox" id="${id}" />`)
-        .append(
-          $('<a class="wp-pure-css-gallery-lightbox__close-btn" href="#_">&times</a>')
-        ).append(
-          $('<a class="wp-pure-css-gallery-lightbox__image-wrapper" href="#_" />').append(
-            $('<div class="wp-pure-css-gallery-lightbox__image" />').css({
-              backgroundImage: `url(${href})`,
-              height: remoteImgHeight,
-              width: remoteImgWidth
-            })
-          )
-        );
-
-      anchor.after(overlay);
+      remoteImg.src = href;
     });
   }
 }
