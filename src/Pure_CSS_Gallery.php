@@ -12,6 +12,10 @@ class Pure_CSS_Gallery {
 	public function __construct() {
 		add_filter( 'post_gallery', array( $this, '_post_gallery' ), 10, 3 );
 		add_filter( 'tiny_mce_before_init', array( $this, '_tiny_mce_before_init' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_styles' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_styles' ] );
+		add_action( 'after_setup_theme', [ $this, '_add_editor_style' ] );
 	}
 
 	/**
@@ -121,5 +125,61 @@ class Pure_CSS_Gallery {
 		ob_start();
 		include( $path );
 		return ob_get_clean();
+	}
+
+	/**
+	 * Enqueue scripts
+	 *
+	 * @return void
+	 */
+	public function _enqueue_scripts() {
+		$relative_path = '/vendor/inc2734/wp-pure-css-gallery/src/assets/js/wp-pure-css-gallery.min.js';
+		$src  = get_template_directory_uri() . $relative_path;
+		$path = get_template_directory() . $relative_path;
+
+		if ( ! file_exists( $path ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'wp-pure-css-gallery',
+			$src,
+			[ 'jquery' ],
+			filemtime( $path ),
+			true
+		);
+	}
+
+	/**
+	 * Enqueue styles
+	 *
+	 * @return void
+	 */
+	public function _enqueue_styles() {
+		$relative_path = '/vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css';
+		$src  = get_template_directory_uri() . $relative_path;
+		$path = get_template_directory() . $relative_path;
+
+		if ( ! file_exists( $path ) ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'wp-pure-css-gallery',
+			$src,
+			[],
+			filemtime( $path )
+		);
+	}
+
+	/**
+	 * Add editor style
+	 *
+	 * @return void
+	 */
+	public function _add_editor_style() {
+		add_editor_style( [
+			'vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css',
+		] );
 	}
 }

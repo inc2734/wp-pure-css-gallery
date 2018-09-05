@@ -16,17 +16,6 @@ $ composer require inc2734/wp-pure-css-gallery
 new Inc2734\WP_Pure_CSS_Gallery\Pure_CSS_Gallery();
 ```
 
-```
-// Using default styles (.scss)
-@import 'vendor/inc2734/wp-pure-css-gallery/src/assets/scss/wp-pure-css-gallery';
-```
-
-```
-// Import js
-import Inc2734_WP_Pure_CSS_Gallery from '../../vendor/inc2734/wp-pure-css-gallery/src/assets/js/wp-pure-css-gallery.js';
-new Inc2734_WP_Pure_CSS_Gallery();
-```
-
 ## Shortcode
 ```
 /**
