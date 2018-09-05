@@ -26,7 +26,6 @@
     "js": "npm-run-all -s cleanup:js js:build",
     "start": "npm run build",
     "build": "npm-run-all -p css js",
-    "postinstall": "npm run build",
-    "prepublish": "npm run build"
+    "postinstall": "npm run build"
   }
 }
