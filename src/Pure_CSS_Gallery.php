@@ -40,36 +40,43 @@ class Pure_CSS_Gallery {
 			$attr['include'] = $attr['ids'];
 		}
 
-		$atts = shortcode_atts( [
-			'id'      => $post ? $post->ID : 0,
-			'link'    => '',
-			'size'    => 'thumbnail',
-			'columns' => 3,
-			'order'   => 'ASC',
-			'orderby' => 'menu_order ID',
-			'include' => '',
-		], $attr );
+		$atts = shortcode_atts(
+			[
+				'id'      => $post ? $post->ID : 0,
+				'link'    => '',
+				'size'    => 'thumbnail',
+				'columns' => 3,
+				'order'   => 'ASC',
+				'orderby' => 'menu_order ID',
+				'include' => '',
+			],
+			$attr
+		);
 
 		$pot_id = intval( $atts['id'] );
 
 		if ( ! empty( $atts['include'] ) ) {
-			$attachments = get_posts( array(
-				'include'        => $atts['include'],
-				'post_status'    => 'inherit',
-				'post_type'      => 'attachment',
-				'post_mime_type' => 'image',
-				'order'          => $atts['order'],
-				'orderby'        => $atts['orderby'],
-			) );
+			$attachments = get_posts(
+				[
+					'include'        => $atts['include'],
+					'post_status'    => 'inherit',
+					'post_type'      => 'attachment',
+					'post_mime_type' => 'image',
+					'order'          => $atts['order'],
+					'orderby'        => $atts['orderby'],
+				]
+			);
 		} else {
-			$attachments = get_children( array(
-				'post_parent'    => $pot_id,
-				'post_status'    => 'inherit',
-				'post_type'      => 'attachment',
-				'post_mime_type' => 'image',
-				'order'          => $atts['order'],
-				'orderby'        => $atts['orderby'],
-			) );
+			$attachments = get_children(
+				[
+					'post_parent'    => $pot_id,
+					'post_status'    => 'inherit',
+					'post_type'      => 'attachment',
+					'post_mime_type' => 'image',
+					'order'          => $atts['order'],
+					'orderby'        => $atts['orderby'],
+				]
+			);
 		}
 
 		if ( empty( $attachments ) ) {
@@ -77,15 +84,21 @@ class Pure_CSS_Gallery {
 		}
 
 		if ( is_feed() ) {
-			return $this->_render( 'feed', array(
-				'attachments' => $attachments,
-			) );
+			return $this->_render(
+				'feed',
+				[
+					'attachments' => $attachments,
+				]
+			);
 		}
 
-		return $this->_render( 'pure-css-gallery', array(
-			'attachments' => array_values( $attachments ),
-			'atts'        => $atts,
-		) );
+		return $this->_render(
+			'pure-css-gallery',
+			[
+				'attachments' => array_values( $attachments ),
+				'atts'        => $atts,
+			]
+		);
 	}
 
 	/**
@@ -178,8 +191,10 @@ class Pure_CSS_Gallery {
 	 * @return void
 	 */
 	public function _add_editor_style() {
-		add_editor_style( [
-			'vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css',
-		] );
+		add_editor_style(
+			[
+				'vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css',
+			]
+		);
 	}
 }
