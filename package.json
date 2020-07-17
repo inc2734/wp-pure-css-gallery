@@ -2,32 +2,22 @@
   "author": "inc2734",
   "license": "GPL-2.0+",
   "devDependencies": {
-    "@wordpress/browserslist-config": "^2.6.0",
-    "autoprefixer": "^9.7.4",
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "babel-loader": "^8.0.6",
-    "cpy-cli": "^3.0.0",
+    "@wordpress/browserslist-config": "^2.7.0",
+    "autoprefixer": "^9.8.5",
+    "cpy-cli": "^3.1.1",
     "gulp": "^4.0.2",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.1",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
+    "rimraf": "^3.0.2",
     "cssnano-cli": "^1.0.5",
-    "node-sass": "^4.13.1",
-    "postcss-cli": "^7.1.0"
+    "node-sass": "^4.14.1",
+    "postcss-cli": "^7.1.1"
   },
   "scripts": {
-    "cleanup:css": "rimraf src/assets/css",
-    "cleanup:js": "rimraf src/assets/js",
-    "css:sass": "node-sass src/src/css -o src/assets/css",
-    "css:postcss": "postcss src/assets/css/**/*.css -r --no-map -c=postcss.config.js",
-    "minify:css": "cssnano src/assets/css/wp-pure-css-gallery.css src/assets/css/wp-pure-css-gallery.min.css --no-zindex",
-    "css": "npm-run-all -s cleanup:css css:sass css:postcss minify:css",
-    "js:build": "webpack src/src/js/wp-pure-css-gallery.js -o src/assets/js/wp-pure-css-gallery.min.js --config webpack.config.js",
-    "js": "npm-run-all -s cleanup:js js:build",
+    "cleanup:css": "rimraf src/assets/css && mkdir -p src/assets/css",
+    "css:sass": "node-sass src/src/css/wp-pure-css-gallery.scss src/assets/css/wp-pure-css-gallery.css",
+    "css:postcss": "postcss src/assets/css/wp-pure-css-gallery.css -o src/assets/css/wp-pure-css-gallery.min.css -c=postcss.config.js",
+    "css": "npm run cleanup:css && npm-run-all -s css:*",
     "start": "npm run build",
-    "build": "npm-run-all -p css js",
-    "postinstall": "npm run build"
+    "build": "npm-run-all -p css"
   }
 }

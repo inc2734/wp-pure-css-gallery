@@ -7,12 +7,11 @@
 
 namespace Inc2734\WP_Pure_CSS_Gallery;
 
-class Pure_CSS_Gallery {
+class Bootstrap {
 
 	public function __construct() {
-		add_filter( 'post_gallery', array( $this, '_post_gallery' ), 10, 3 );
-		add_filter( 'tiny_mce_before_init', array( $this, '_tiny_mce_before_init' ) );
-		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_scripts' ] );
+		add_filter( 'post_gallery', [ $this, '_post_gallery' ], 10, 3 );
+		add_filter( 'tiny_mce_before_init', [ $this, '_tiny_mce_before_init' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_styles' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_styles' ] );
 		add_action( 'after_setup_theme', [ $this, '_add_editor_style' ] );
@@ -107,9 +106,9 @@ class Pure_CSS_Gallery {
 	 * @param array $mce_init
 	 */
 	public function _tiny_mce_before_init( $mce_init ) {
-		$styles  = '#tinymce .wpview .gallery { margin: 0; display: block; border: 2px solid #666; text-align: center; height: 80px; }';
-		$styles .= '#tinymce .wpview .gallery > * { display: none; }';
-		$styles .= '#tinymce .wpview .gallery::before { margin-top: 20px; display: inline-block; content: \'\\\\f161\'; font-family: dashicons; font-size: 18px; color: #666 }';
+		$styles  = '.mce-content-body .wpview .gallery { margin: 0; display: block; border: 2px solid #666; text-align: center; height: 80px; }';
+		$styles .= '.mce-content-body .wpview .gallery > * { display: none; }';
+		$styles .= '.mce-content-body .wpview .gallery::before { margin-top: 20px; display: inline-block; content: \'\\\\f161\'; font-family: dashicons; font-size: 18px; color: #666 }';
 		if ( isset( $mce_init['content_style'] ) ) {
 			$mce_init['content_style'] .= $styles;
 		} else {
@@ -141,47 +140,16 @@ class Pure_CSS_Gallery {
 	}
 
 	/**
-	 * Enqueue scripts
-	 *
-	 * @return void
-	 */
-	public function _enqueue_scripts() {
-		$relative_path = '/vendor/inc2734/wp-pure-css-gallery/src/assets/js/wp-pure-css-gallery.min.js';
-		$src  = get_template_directory_uri() . $relative_path;
-		$path = get_template_directory() . $relative_path;
-
-		if ( ! file_exists( $path ) ) {
-			return;
-		}
-
-		wp_enqueue_script(
-			'wp-pure-css-gallery',
-			$src,
-			[ 'jquery' ],
-			filemtime( $path ),
-			true
-		);
-	}
-
-	/**
 	 * Enqueue styles
 	 *
 	 * @return void
 	 */
 	public function _enqueue_styles() {
-		$relative_path = '/vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css';
-		$src  = get_template_directory_uri() . $relative_path;
-		$path = get_template_directory() . $relative_path;
-
-		if ( ! file_exists( $path ) ) {
-			return;
-		}
-
 		wp_enqueue_style(
 			'wp-pure-css-gallery',
-			$src,
+			get_template_directory_uri() . '/vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css',
 			[],
-			filemtime( $path )
+			filemtime( get_template_directory() . '/vendor/inc2734/wp-pure-css-gallery/src/assets/css/wp-pure-css-gallery.min.css' )
 		);
 	}
 

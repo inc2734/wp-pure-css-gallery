@@ -12,8 +12,7 @@ $ composer require inc2734/wp-pure-css-gallery
 ## How to use
 ```
 <?php
-// When Using composer auto loader
-new Inc2734\WP_Pure_CSS_Gallery\Pure_CSS_Gallery();
+new Inc2734\WP_Pure_CSS_Gallery\Bootstrap();
 ```
 
 ## Shortcode
