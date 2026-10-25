@@ -1,6 +1,6 @@
 # WP Pure CSS Gallery
 
-[![Build Status](https://travis-ci.org/inc2734/wp-pure-css-gallery.svg?branch=master)](https://travis-ci.org/inc2734/wp-pure-css-gallery)
+[![CI](https://github.com/inc2734/wp-pure-css-gallery/actions/workflows/ci.yml/badge.svg)](https://github.com/inc2734/wp-pure-css-gallery/actions/workflows/ci.yml)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-pure-css-gallery/v/stable)](https://packagist.org/packages/inc2734/wp-pure-css-gallery)
 [![License](https://poser.pugx.org/inc2734/wp-pure-css-gallery/license)](https://packagist.org/packages/inc2734/wp-pure-css-gallery)
 
@@ -8,6 +8,22 @@
 ```
 $ composer require inc2734/wp-pure-css-gallery
 ```
+
+## Development
+
+```sh
+npm ci
+npm run build
+npm test
+```
+
+`npm start` starts the development environment. PHP lint and PHPUnit use the
+separate `.wp-env.tests.json` environment on port 8889 and stop it after each
+check. Run `npm run test:lint:php` or `npm run test:unit:php` for individual checks.
+Composer and PHPUnit are installed and run inside wp-env; host PHP is not required.
+
+`npm stop` stops development, `npm run test:php:stop` stops tests, and
+`npm run destroy` removes both environments.
 
 ## How to use
 ```

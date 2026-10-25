@@ -8,7 +8,7 @@
 
 <div class="wp-pure-css-gallery wp-pure-css-gallery--<?php echo esc_attr( $atts['columns'] ); ?>-columns">
 	<?php $attachments_count = count( $attachments ); ?>
-	<?php for ( $i = 0; $i < $attachments_count; $i ++ ) : ?>
+	<?php for ( $i = 0; $i < $attachments_count; $i++ ) : ?>
 		<?php
 		$attachment = $attachments[ $i ];
 		?>

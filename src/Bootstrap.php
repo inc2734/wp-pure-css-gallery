@@ -137,7 +137,7 @@ class Bootstrap {
 		// phpcs:ignore WordPress.PHP.DontExtract.extract_extract
 		extract( $attributes );
 		ob_start();
-		include( $path );
+		include $path;
 		return ob_get_clean();
 	}
 

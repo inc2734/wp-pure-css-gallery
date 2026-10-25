@@ -2,11 +2,11 @@
 <ruleset name="WordPress Coding Standards">
 	<description>Sniffs for WordPress plugins, with minor modifications</description>
 
-	<rule ref="PHPCompatibility"/>
+	<rule ref="PHPCompatibilityWP"/>
 	<config name="testVersion" value="5.6-"/>
 
 	<rule ref="WordPress-Core">
-    <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+    <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
     <exclude name="Generic.Commenting.DocComment.MissingShort"/>
     <exclude name="Generic.Commenting.DocComment.ShortNotCapital"/>
     <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
@@ -24,7 +24,7 @@
 			<property name="allowUnusedParametersBeforeUsed" value="true"/>
 		</properties>
 	</rule>
-	<rule ref="WordPress.CodeAnalysis.EmptyStatement"/>
+	<rule ref="Generic.CodeAnalysis.EmptyPHPStatement"/>
 
   <rule ref="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable">
     <exclude-pattern>/app/view/*\.php</exclude-pattern>

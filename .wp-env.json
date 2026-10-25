@@ -1,9 +1,10 @@
 {
-  "core": null,
-  "mappings": {
-    "wp-content/plugins/wp-pure-css-gallery": "./"
-  },
-  "config": {
-    "WP_DEBUG": true
-  }
+	"core": null,
+	"testsEnvironment": false,
+	"mappings": {
+		"wp-content/plugins/wp-pure-css-gallery": "./"
+	},
+	"config": {
+		"WP_DEBUG": true
+	}
 }
